@@ -1,0 +1,9 @@
+{
+  "name": "amused-backend",
+  "version": "1.0.0",
+  "description": "Amused.Finance backend server logics",
+  "main": "index.js",
+  "repository": "https://github.com/Abdillahzakkie/amused-backend",
+  "author": "DragonLord",
+  "license": "GNU"
+}
