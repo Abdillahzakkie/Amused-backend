@@ -1,7 +1,7 @@
+require('dotenv/config');
 const { connectWeb3 } = require('../web3');
 const fetch = require('cross-fetch');
 
-require('dotenv/config');
 
 const startBlock = process.env.startBlock;
 const etherscanApiKey = process.env.etherscan_Api_Key;
