@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { connectDB } = require('./DB');
+const { connectDB } = require('./db');
 const transactionRoute = require('./routes/transaction.route');
 const { connectWeb3 } = require('./web3');
 
