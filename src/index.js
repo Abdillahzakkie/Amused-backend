@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 app.use(cors());
 app.use('/api/v1/transactions', transactionRoute);
+app.get('/api/v1/startBlock', async (_, res) => res.status(200).json(process.env.startBlock));
 
 
 app.listen(PORT, async () => {

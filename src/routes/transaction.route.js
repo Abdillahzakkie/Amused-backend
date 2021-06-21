@@ -4,7 +4,6 @@ const { getNormalTransactionLists } = require('../helper');
 router.get('/', async (req, res) => {
     try {
         const { user } = req.query;
-        console.log(user)
         const _userNormalTransaction = await getNormalTransactionLists(user);
         return res.status(200).json(_userNormalTransaction);
     } catch (error) {
