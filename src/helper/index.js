@@ -34,7 +34,6 @@ const getNormalTransactionLists = async user => {
 
 const formatTransactionLists = async (_data) => {
     try {
-        console.log(_data);
         let result = await _data.map(item => {
             const { hash, from, to, gasPrice, gasUsed, nonce, value, blockNumber } = item;
             return {
