@@ -7,8 +7,8 @@
   "author": "DragonLord",
   "license": "GNU GENERAL PUBLIC LICENSE",
   "scripts": {
-    "start": "node ./src/index.js",
-    "start:dev": "nodemon ./src/index.js"
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
