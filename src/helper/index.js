@@ -48,7 +48,6 @@ const formatTransactionLists = async (_data) => {
             }
         })
 
-        result = result.reverse();
         return result;
     } catch (error) {
         return error.message;
