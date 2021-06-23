@@ -56,8 +56,6 @@ const formatTransactionLists = async (_data) => {
 
 const getRefferalHistory = async (user) => {
     try {
-        const startBlock = (await axios.get("https://amused-finance-backend.herokuapp.com/api/v1/startBlock")).data;
-
         const _endBlock = parseInt(await web3.eth.getBlockNumber());
         let _tempData = [];
         
