@@ -15,9 +15,9 @@ let amusedToken;
     amusedToken = _amusedToken;
 })()
 
-const fromWei = (_amount) => !loading && web3.utils.fromWei(_amount.toString(), "ether");
+const fromWei = (_amount) => web3.utils.fromWei(_amount.toString(), "ether");
 
-const toWei = (_amount) => !loading && web3.utils.toWei(_amount.toString(), "ether");
+const toWei = (_amount) => web3.utils.toWei(_amount.toString(), "ether");
 
 const getNormalTransactionLists = async user => {
     try {
