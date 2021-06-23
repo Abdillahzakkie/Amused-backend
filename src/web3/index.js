@@ -5,7 +5,7 @@ const { abi: amusedVaultABI } = require('./abi/AmusedTokenABI.json');
 
 const connectWeb3 = async () => {
     try {
-        const web3 = new Web3(`https://eth-mainnet.alchemyapi.io/v2/${process.env.alchemyApiKey}`);
+        const web3 = new Web3(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.alchemyApiKey}`);
         const amusedToken = new web3.eth.Contract(amusedTokenABI, process.env.amuseTokenAddress);
         const amusedVault = new web3.eth.Contract(amusedVaultABI, process.env.amusedVaultAddress);
 

@@ -6,18 +6,20 @@ const fetch = require('cross-fetch');
 const startBlock = process.env.startBlock;
 const etherscanApiKey = process.env.etherscan_Api_Key;
 
+let loading = true;
 let web3;
 let amusedToken;
 
 (async () => {
     const { web3: _web3, amusedToken: _amusedToken } = await connectWeb3();
+    loading = false;
     web3 = _web3;
     amusedToken = _amusedToken;
 })()
 
-const fromWei = (_amount) => web3.utils.fromWei(_amount.toString(), "ether");
+const fromWei = (_amount) => !loading && web3.utils.fromWei(_amount.toString(), "ether");
 
-const toWei = (_amount) => web3.utils.toWei(_amount.toString(), "ether");
+const toWei = (_amount) => !loading && web3.utils.toWei(_amount.toString(), "ether");
 
 const getNormalTransactionLists = async user => {
     try {
@@ -64,7 +66,7 @@ const getRefferalHistory = async (user) => {
             const _result = await amusedToken.getPastEvents("ReferralReward", { fromBlock: i, toBlock: _step });
             _tempData = [..._tempData, ..._result]
         }
-        
+
         _tempData = _tempData.filter(item => web3.utils.toChecksumAddress(item.returnValues.referrer) === web3.utils.toChecksumAddress(user));
 
         _tempData = _tempData.map(item => {
