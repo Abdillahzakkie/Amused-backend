@@ -76,7 +76,7 @@ const formatTransactionLists = async (_data) => {
 				nonce,
 				blockNumber,
 				value: fromWei(value),
-				timeStamp: moment(new Date(parseInt(timeStamp * 1000))).fromNow(),
+				timestamp: moment(new Date(parseInt(timeStamp * 1000))).fromNow(),
 			};
 		});
 		return result;
