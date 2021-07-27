@@ -90,7 +90,7 @@ const validateSignature = async (user, signature, chainId, amount) => {
 		const msgParams = JSON.stringify({
 			domain: {
 				chainId,
-				name: "Amused.Finance",
+				name: "Amuse.Finance",
 				version: "1",
 			},
 			message: {
@@ -129,11 +129,12 @@ const validateSignature = async (user, signature, chainId, amount) => {
 
 const requestFaucet = async (_account, _amount) => {
 	try {
+		await await amusedFaucet.methods.isValidWithdrawal(_account).call();
 		const _result = await amusedFaucet.methods
 			.requestFaucet(_account, toWei(_amount))
 			.send({
 				from: admin,
-				gas: 210000,
+				gas: 1000000,
 			});
 		return _result;
 	} catch (error) {
