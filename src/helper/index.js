@@ -29,6 +29,7 @@ const toChecksumAddress = (_account) =>
 
 const getNormalTransactionLists = async (user) => {
 	try {
+		if (loading) return;
 		let tempData = [];
 
 		const _endBlock = parseInt(await web3.eth.getBlockNumber());
