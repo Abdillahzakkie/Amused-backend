@@ -17,9 +17,8 @@ const connectWeb3 = async () => {
 		// 	amusedVaultABI,
 		// 	process.env.amusedVaultAddress
 		// );
-
 		const { address: admin } = web3.eth.accounts.wallet.add(
-			process.env.adminKey
+			process.env.adminFaucetPrivateKey
 		);
 		return { web3, admin };
 	} catch (error) {
