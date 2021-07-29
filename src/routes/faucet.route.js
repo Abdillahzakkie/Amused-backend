@@ -5,7 +5,6 @@ const router = require("express").Router();
 router.post("/requestFaucet", async (req, res) => {
 	try {
 		const { user, signature, chainId, amount } = req.body;
-
 		const { status, signer, error } = await validateSignature(
 			user,
 			signature,
