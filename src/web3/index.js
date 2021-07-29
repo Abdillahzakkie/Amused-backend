@@ -33,7 +33,7 @@ const customWeb3Connect = async (_network) => {
 			`https://eth-${_network}.alchemyapi.io/v2/${process.env.alchemyApiKey}`
 		);
 		const { address: admin } = web3.eth.accounts.wallet.add(
-			process.env.adminKey
+			process.env.adminFaucetPrivateKey
 		);
 
 		const amuseFaucet = new web3.eth.Contract(
