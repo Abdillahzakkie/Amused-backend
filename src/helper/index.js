@@ -119,8 +119,6 @@ const validateSignature = async (user, signature, chainId, amount) => {
 			};
 		return { status: true, signer: recovered };
 	} catch (error) {
-		console.log(error);
-
 		return error;
 	}
 };
@@ -138,7 +136,6 @@ const requestFaucet = async (_account, _amount) => {
 			});
 		return _result;
 	} catch (error) {
-		console.log(error);
 		return error;
 	}
 };
