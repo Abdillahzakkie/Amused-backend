@@ -1,5 +1,5 @@
 require("dotenv/config");
-const { connectWeb3 } = require("../web3");
+const { connectWeb3, customWeb3Connect } = require("../web3");
 const fetch = require("cross-fetch");
 const sigUtil = require("eth-sig-util");
 const moment = require("moment");
@@ -10,18 +10,12 @@ const etherscanApiKey = process.env.etherscan_Api_Key;
 let loading = true;
 let web3;
 let admin;
-let amusedFaucet;
 
 (async () => {
-	const {
-		web3: _web3,
-		admin: _admin,
-		amusedFaucet: _amusedFaucet,
-	} = await connectWeb3();
+	const { web3: _web3, admin: _admin } = await connectWeb3();
 	loading = false;
 	web3 = _web3;
 	admin = _admin;
-	amusedFaucet = _amusedFaucet;
 })();
 
 const fromWei = (_amount) =>
@@ -49,6 +43,7 @@ const getNormalTransactionLists = async (user) => {
 		}
 		return formatTransactionLists(tempData);
 	} catch (error) {
+		console.log(error);
 		return error.message;
 	}
 };
@@ -129,8 +124,9 @@ const validateSignature = async (user, signature, chainId, amount) => {
 
 const requestFaucet = async (_account, _amount) => {
 	try {
-		await await amusedFaucet.methods.isValidWithdrawal(_account).call();
-		const _result = await amusedFaucet.methods
+		const { amuseFaucet } = await customWeb3Connect("rinkeby");
+		await await amuseFaucet.methods.isValidWithdrawal(_account).call();
+		const _result = await amuseFaucet.methods
 			.requestFaucet(_account, toWei(_amount))
 			.send({
 				from: admin,
