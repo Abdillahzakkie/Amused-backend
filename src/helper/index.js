@@ -129,16 +129,19 @@ const validateSignature = async (user, signature, chainId, amount) => {
 const requestFaucet = async (_account, _amount) => {
 	try {
 		const { amuseFaucet } = await customWeb3Connect("rinkeby");
-		await amuseFaucet.methods.isValidWithdrawal(_account).call();
+		await amuseFaucet.methods
+			.requestFaucet(_account, toWei(_amount))
+			.call({ from: admin });
+
 		const _result = await amuseFaucet.methods
 			.requestFaucet(_account, toWei(_amount))
 			.send({
 				from: admin,
 				gas: 1000000,
 			});
-		console.log("_result", _result);
 		return _result;
 	} catch (error) {
+		console.log(error);
 		return error;
 	}
 };
