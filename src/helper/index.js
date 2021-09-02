@@ -136,6 +136,7 @@ const requestFaucet = async (_account, _amount) => {
 				from: admin,
 				gas: 1000000,
 			});
+		console.log("_result", _result);
 		return _result;
 	} catch (error) {
 		return error;
