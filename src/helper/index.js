@@ -125,9 +125,8 @@ const validateSignature = async (user, signature, chainId, amount) => {
 
 const requestFaucet = async (_account, _amount) => {
 	try {
-		console.log("working");
 		const { amuseFaucet } = await customWeb3Connect("rinkeby");
-		await await amuseFaucet.methods.isValidWithdrawal(_account).call();
+		await amuseFaucet.methods.isValidWithdrawal(_account).call();
 		const _result = await amuseFaucet.methods
 			.requestFaucet(_account, toWei(_amount))
 			.send({
