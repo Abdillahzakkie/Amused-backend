@@ -27,17 +27,20 @@ const toWei = (_amount) =>
 const toChecksumAddress = (_account) =>
 	!loading && web3.utils.toChecksumAddress(_account);
 
-const getNormalTransactionLists = async (user) => {
+const getNormalTransactionLists = async (network, user) => {
 	try {
 		if (loading) return;
 		let tempData = [];
+		const _prefix = !network
+			? "api.etherscan.io"
+			: `api-${network}.etherscan.io`;
 
 		const _endBlock = parseInt(await web3.eth.getBlockNumber());
 		for (let i = startBlock; i <= _endBlock; i = i + 10000) {
 			const _step = i + 10000;
 			const _result = await (
 				await fetch(
-					`//api.etherscan.io/api?module=account&action=txlist&address=${user}&startblock=${i}&endblock=${_step}&sort=desc&apikey=${etherscanApiKey}`
+					`//${_prefix}/api?module=account&action=txlist&address=${user}&startblock=${i}&endblock=${_step}&sort=desc&apikey=${etherscanApiKey}`
 				)
 			).json();
 			tempData = [...tempData, ..._result.result];
