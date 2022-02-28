@@ -35,16 +35,24 @@ const getNormalTransactionLists = async (network, user) => {
 			? "api.etherscan.io"
 			: `api-${network}.etherscan.io`;
 
-		const _endBlock = parseInt(await web3.eth.getBlockNumber());
-		for (let i = startBlock; i <= _endBlock; i = i + 10000) {
-			const _step = i + 10000;
-			const _result = await (
-				await fetch(
-					`//${_prefix}/api?module=account&action=txlist&address=${user}&startblock=${i}&endblock=${_step}&sort=desc&apikey=${etherscanApiKey}`
-				)
-			).json();
-			tempData = [...tempData, ..._result.result];
-		}
+		// const _endBlock = parseInt(await web3.eth.getBlockNumber());
+		// for (let i = startBlock; i <= _endBlock; i = i + 10000) {
+		// 	const _step = i + 10000;
+		// 	const _result = await (
+		// 		await fetch(
+		// 			`//${_prefix}/api?module=account&action=txlist&address=${user}&startblock=${i}&endblock=${_step}&sort=desc&apikey=${etherscanApiKey}`
+		// 		)
+		// 	).json();
+		// 	tempData = [...tempData, ..._result.result];
+		// }
+
+		const { result } = await (
+			await fetch(
+				`//${_prefix}/api?module=account&action=txlist&address=${user}&sort=desc&apikey=${etherscanApiKey}`
+			)
+		).json();
+		tempData = [...tempData, ...result];
+
 		return formatTransactionLists(tempData);
 	} catch (error) {
 		console.log(error);
